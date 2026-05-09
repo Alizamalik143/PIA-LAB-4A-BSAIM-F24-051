@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NLP Spam Detector</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f4f4f9; }
+        .container { background: white; padding: 20px; display: inline-block; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+        textarea { width: 300px; height: 100px; }
+        .btn { background-color: #28a745; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+        .result { margin-top: 20px; font-weight: bold; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>SMS/Email Spam Classifier</h2>
+        <form action="/predict" method="POST">
+            <textarea name="message" placeholder="Enter your text here..." required></textarea><br><br>
+            <input type="submit" class="btn" value="Predict">
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                Prediction: <span style="color: {{ 'red' if prediction == 'spam' else 'green' }}">{{ prediction.upper() }}</span>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
